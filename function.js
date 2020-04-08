@@ -11,7 +11,7 @@ function fileLoop(projectPath) {
       process.exit(1);
     }
 
-    console.log(files);
+    // console.log(files);
 
     for (let i = 0; i < files.length; i++) {
       let filePath = path.join(projectPath, files[i]);
@@ -23,7 +23,17 @@ function fileLoop(projectPath) {
         }
 
         if (stat.isFile()) {
-          console.log('one file here');
+          // console.log('one file here');
+          fs.readFile(filePath, (error, data) => {
+            if (error) {
+              console.log(error);
+              return;
+            }
+
+            if (data.includes('GraphQLServer')) {
+              console.log(filePath);
+            }
+          });
         } else {
           fileLoop(filePath);
         }
