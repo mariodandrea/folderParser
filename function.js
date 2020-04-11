@@ -30,8 +30,8 @@ function fileLoop(projectPath) {
               return;
             }
 
-            if (data.includes('GraphQLServer')) {
-              console.log(filePath);
+            if (data.includes('apollo-server-express')) {
+              return filePath;
             }
           });
         } else {
@@ -40,6 +40,8 @@ function fileLoop(projectPath) {
       });
     }
   });
+
+  return 'file not found';
 }
 
 fileLoop(projectPath);
